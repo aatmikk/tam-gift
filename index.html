@@ -4,629 +4,251 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tam</title>
-    <meta name="description" content="a private digital gift page for tamanna">
-    <meta name="canonical" content="https://yourdomain.com/tam">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
         
-        :root {
-            --bg-cream: #FAF6F0;
-            --text-warm: #6B4A32;
-            --accent-sage: #B8C5B8;
-            --accent-orchid: #C4B5C4;
-            --white: #FFFFFF;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-cream);
-            color: var(--text-warm);
+            background-color: #FAF6F0;
+            color: #6B4A32;
             line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        /* crayon flower decorations */
-        .flower-container {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .crayon-flower {
-            position: absolute;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-        
-        .crayon-flower.visible {
-            opacity: 0.6;
-        }
-        
-        .flower-left {
-            left: -50px;
-            transform-origin: bottom center;
-        }
-        
-        .flower-right {
-            right: -50px;
-            transform-origin: bottom center;
-        }
-        
-        .flower-1 {
-            top: 15%;
-            width: 180px;
-            height: 280px;
-        }
-        
-        .flower-2 {
-            top: 45%;
-            width: 150px;
-            height: 240px;
-        }
-        
-        .flower-3 {
-            top: 75%;
-            width: 200px;
-            height: 300px;
-        }
-        
-        /* main content */
-        .content {
-            position: relative;
-            z-index: 2;
         }
         
         section {
             min-height: 100vh;
-            padding: 8rem 2rem;
+            padding: 6rem 2rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         
-        /* hero section */
         .hero {
             align-items: center;
             text-align: center;
-            position: relative;
         }
         
-        .hero-title {
+        h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(4rem, 12vw, 10rem);
+            font-size: clamp(4rem, 15vw, 12rem);
             font-weight: 400;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s ease forwards;
-            cursor: default;
-            transition: transform 0.3s ease, letter-spacing 0.3s ease;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
         }
         
-        .hero-title:hover {
-            transform: scale(1.02);
-            letter-spacing: 0.05em;
-        }
+        h1:hover { transform: scale(1.02); }
         
-        .hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: 300;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s ease 0.2s forwards;
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
             max-width: 500px;
-            margin-bottom: 3rem;
         }
         
-        .hero-cta {
+        .btn {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background-color: var(--text-warm);
-            color: var(--bg-cream);
+            background: #6B4A32;
+            color: #FAF6F0;
             text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
             border-radius: 50px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s ease 0.4s forwards;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s;
         }
         
-        .hero-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(107, 74, 50, 0.2);
-        }
+        .btn:hover { transform: translateY(-3px); }
         
-        .hero-secondary {
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            opacity: 0;
-            animation: fadeUp 1s ease 0.6s forwards;
-        }
-        
-        .hero-secondary a {
-            color: var(--text-warm);
-            text-decoration: none;
-            border-bottom: 1px solid var(--text-warm);
-            padding-bottom: 2px;
-            transition: border-bottom-width 0.3s ease;
-        }
-        
-        .hero-secondary a:hover {
-            border-bottom-width: 2px;
-        }
-        
-        /* story section */
         .story {
-            background-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255,255,255,0.4);
         }
         
-        .section-label {
+        .label {
             font-size: 0.75rem;
             letter-spacing: 0.2em;
-            text-transform: lowercase;
-            color: var(--accent-sage);
+            color: #B8C5B8;
             margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .section-label.visible {
-            animation: fadeUp 0.8s ease forwards;
-        }
-        
-        .story-content {
-            max-width: 700px;
         }
         
         .story-text {
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(1.5rem, 4vw, 2.5rem);
             line-height: 1.5;
-            font-weight: 400;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .story-text.visible {
-            animation: fadeUp 1s ease forwards;
+            max-width: 700px;
         }
         
         .poem {
-            margin-top: 3rem;
+            margin-top: 2rem;
             padding-left: 2rem;
-            border-left: 2px solid var(--accent-orchid);
+            border-left: 2px solid #C4B5C4;
             font-style: italic;
-            opacity: 0;
-            transform: translateY(20px);
         }
         
-        .poem.visible {
-            animation: fadeUp 1s ease 0.3s forwards;
-        }
-        
-        .poem-line {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* gallery section */
         .gallery {
-            padding: 6rem 2rem;
-        }
-        
-        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 4rem;
+            margin-top: 3rem;
         }
         
-        .gallery-item {
+        .video-box {
             position: relative;
-            opacity: 0;
-            transform: translateY(20px);
         }
         
-        .gallery-item.visible {
-            animation: fadeUp 0.8s ease forwards;
-        }
-        
-        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
-        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
-        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
-        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
-        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
-        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
-        
-        .gallery-image {
+        .video-box video {
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
             border-radius: 20px;
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
         
-        .gallery-item:hover .gallery-image {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(107, 74, 50, 0.15);
-        }
-        
-        .gallery-caption {
-            margin-top: 1rem;
+        .caption {
+            margin-top: 0.5rem;
             font-size: 0.85rem;
-            color: var(--text-warm);
-            opacity: 0.8;
         }
         
-        /* closing section */
         .closing {
             text-align: center;
-            min-height: 80vh;
         }
         
-        .closing-message {
+        .closing-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            line-height: 1.3;
+            font-size: clamp(1.8rem, 4vw, 3rem);
             max-width: 800px;
-            margin: 0 auto 3rem;
-            opacity: 0;
-            transform: translateY(20px);
+            margin-bottom: 2rem;
         }
         
-        .closing-message.visible {
-            animation: fadeUp 1s ease forwards;
+        .flower {
+            position: fixed;
+            width: 150px;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: -1;
         }
         
-        .closing-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-warm);
-            text-decoration: none;
-            font-size: 1rem;
-            border-bottom: 1px solid var(--text-warm);
-            padding-bottom: 4px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: gap 0.3s ease;
-        }
+        .flower-left { left: -30px; }
+        .flower-right { right: -30px; }
         
-        .closing-cta.visible {
-            animation: fadeUp 1s ease 0.3s forwards;
-        }
-        
-        .closing-cta:hover {
-            gap: 1rem;
-        }
-        
-        /* animations */
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes growFlower {
-            from {
-                transform: scale(0) rotate(-10deg);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1) rotate(0deg);
-                opacity: 0.6;
-            }
-        }
-        
-        /* responsive */
-        @media (max-width: 768px) {
-            section {
-                padding: 6rem 1.5rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .crayon-flower {
-                width: 100px !important;
-                height: 150px !important;
-            }
-        }
-        
-        /* smooth scroll indicator */
-        .scroll-hint {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
-            animation: fadeUp 1s ease 1s forwards, bounce 2s infinite 2s;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
+        .f1 { top: 10%; }
+        .f2 { top: 40%; }
+        .f3 { top: 70%; }
     </style>
 </head>
 <body>
-    <!-- crayon flowers -->
-    <div class="flower-container">
-        <!-- left side flowers -->
-        <svg class="crayon-flower flower-left flower-1" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 300 Q100 200 80 150 Q60 100 100 80 Q140 100 120 150 Q100 200 100 300" stroke="#B8C5B8" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <ellipse cx="100" cy="60" rx="25" ry="40" fill="#C4B5C4" opacity="0.8" transform="rotate(-20 100 60)"/>
-            <ellipse cx="100" cy="60" rx="25" ry="40" fill="#C4B5C4" opacity="0.8" transform="rotate(20 100 60)"/>
-            <ellipse cx="100" cy="60" rx="25" ry="40" fill="#C4B5C4" opacity="0.8" transform="rotate(60 100 60)"/>
-            <ellipse cx="100" cy="60" rx="25" ry="40" fill="#C4B5C4" opacity="0.8" transform="rotate(-60 100 60)"/>
-            <circle cx="100" cy="60" r="15" fill="#6B4A32" opacity="0.3"/>
-            <path d="M80 120 Q60 100 40 110" stroke="#B8C5B8" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path d="M120 140 Q140 120 160 130" stroke="#B8C5B8" stroke-width="2" fill="none" stroke-linecap="round"/>
-        </svg>
-        
-        <svg class="crayon-flower flower-left flower-2" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 300 Q100 220 90 180 Q80 140 100 120 Q120 140 110 180 Q100 220 100 300" stroke="#C4B5C4" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <circle cx="100" cy="100" r="35" fill="#B8C5B8" opacity="0.6"/>
-            <circle cx="85" cy="85" r="20" fill="#C4B5C4" opacity="0.7"/>
-            <circle cx="115" cy="85" r="20" fill="#C4B5C4" opacity="0.7"/>
-            <circle cx="100" cy="70" r="20" fill="#C4B5C4" opacity="0.7"/>
-            <circle cx="100" cy="100" r="12" fill="#6B4A32" opacity="0.3"/>
-        </svg>
-        
-        <svg class="crayon-flower flower-left flower-3" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 300 Q90 250 85 200 Q80 150 100 130 Q120 150 115 200 Q110 250 100 300" stroke="#B8C5B8" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <ellipse cx="100" cy="110" rx="30" ry="50" fill="#C4B5C4" opacity="0.7" transform="rotate(-30 100 110)"/>
-            <ellipse cx="100" cy="110" rx="30" ry="50" fill="#C4B5C4" opacity="0.7" transform="rotate(30 100 110)"/>
-            <ellipse cx="100" cy="110" rx="30" ry="50" fill="#C4B5C4" opacity="0.7" transform="rotate(90 100 110)"/>
-            <circle cx="100" cy="110" r="18" fill="#6B4A32" opacity="0.3"/>
-        </svg>
-        
-        <!-- right side flowers -->
-        <svg class="crayon-flower flower-right flower-1" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 300 Q100 200 120 150 Q140 100 100 80 Q60 100 80 150 Q100 200 100 300" stroke="#C4B5C4" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <ellipse cx="100" cy="60" rx="28" ry="45" fill="#B8C5B8" opacity="0.7" transform="rotate(-15 100 60)"/>
-            <ellipse cx="100" cy="60" rx="28" ry="45" fill="#B8C5B8" opacity="0.7" transform="rotate(15 100 60)"/>
-            <ellipse cx="100" cy="60" rx="28" ry="45" fill="#B8C5B8" opacity="0.7" transform="rotate(45 100 60)"/>
-            <ellipse cx="100" cy="60" rx="28" ry="45" fill="#B8C5B8" opacity="0.7" transform="rotate(-45 100 60)"/>
-            <ellipse cx="100" cy="60" rx="28" ry="45" fill="#B8C5B8" opacity="0.7" transform="rotate(75 100 60)"/>
-            <ellipse cx="100" cy="60" rx="28" ry="45" fill="#B8C5B8" opacity="0.7" transform="rotate(-75 100 60)"/>
-            <circle cx="100" cy="60" r="15" fill="#6B4A32" opacity="0.3"/>
-        </svg>
-        
-        <svg class="crayon-flower flower-right flower-2" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 300 Q100 220 110 180 Q120 140 100 120 Q80 140 90 180 Q100 220 100 300" stroke="#B8C5B8" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <circle cx="100" cy="100" r="40" fill="#C4B5C4" opacity="0.5"/>
-            <circle cx="100" cy="100" r="30" fill="#B8C5B8" opacity="0.6"/>
-            <circle cx="100" cy="100" r="20" fill="#C4B5C4" opacity="0.7"/>
-            <circle cx="100" cy="100" r="10" fill="#6B4A32" opacity="0.3"/>
-            <path d="M70 160 Q50 140 30 150" stroke="#C4B5C4" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path d="M130 170 Q150 150 170 160" stroke="#C4B5C4" stroke-width="2" fill="none" stroke-linecap="round"/>
-        </svg>
-        
-        <svg class="crayon-flower flower-right flower-3" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 300 Q110 250 115 200 Q120 150 100 130 Q80 150 85 200 Q90 250 100 300" stroke="#C4B5C4" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <ellipse cx="100" cy="110" rx="35" ry="55" fill="#B8C5B8" opacity="0.6" transform="rotate(-20 100 110)"/>
-            <ellipse cx="100" cy="110" rx="35" ry="55" fill="#B8C5B8" opacity="0.6" transform="rotate(20 100 110)"/>
-            <ellipse cx="100" cy="110" rx="35" ry="55" fill="#B8C5B8" opacity="0.6" transform="rotate(60 100 110)"/>
-            <ellipse cx="100" cy="110" rx="35" ry="55" fill="#B8C5B8" opacity="0.6" transform="rotate(-60 100 110)"/>
-            <circle cx="100" cy="110" r="20" fill="#6B4A32" opacity="0.2"/>
-        </svg>
-    </div>
+    <svg class="flower flower-left f1" viewBox="0 0 200 300" fill="none">
+        <path d="M100 300 Q100 200 80 150 Q60 100 100 80 Q140 100 120 150 Q100 200 100 300" stroke="#B8C5B8" stroke-width="3" fill="none"/>
+        <ellipse cx="100" cy="60" rx="25" ry="40" fill="#C4B5C4" opacity="0.8" transform="rotate(-20 100 60)"/>
+        <ellipse cx="100" cy="60" rx="25" ry="40" fill="#C4B5C4" opacity="0.8" transform="rotate(20 100 60)"/>
+        <circle cx="100" cy="60" r="15" fill="#6B4A32" opacity="0.3"/>
+    </svg>
     
-    <main class="content">
-        <!-- hero section -->
-        <section class="hero">
-            <h1 class="hero-title">tam</h1>
-            <p class="hero-subtitle">as fine as the winter wine, with her glasses perched, her gaze divine</p>
-            <a href="#story" class="hero-cta">enter</a>
-            <p class="hero-secondary">
-                <a href="#gallery">see all moments</a>
-            </p>
-            <div class="scroll-hint">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 5v14M19 12l-7 7-7-7"/>
-                </svg>
-            </div>
-        </section>
-        
-        <!-- story section -->
-        <section id="story" class="story">
-            <span class="section-label">how this was made</span>
-            <div class="story-content">
-                <p class="story-text">
-                    this is a small corner of the internet dedicated to tamanna aatmik chauhan. 
-                    the girl who wins at roblox, takes the prettiest mirror selfies, and somehow 
-                    looks perfect in every saree she wears.
-                </p>
-                <div class="poem">
-                    <span class="poem-line">as fine as the winter wine,</span>
-                    <span class="poem-line">w her glasses perched,</span>
-                    <span class="poem-line">her gaze divine</span>
-                    <br>
-                    <span class="poem-line">as bright as the morning,</span>
-                    <span class="poem-line">dark as a daze,</span>
-                    <span class="poem-line">eyes like bonfire,</span>
-                    <span class="poem-line">lost in a haze.</span>
-                </div>
-            </div>
-        </section>
-        
-        <!-- gallery section -->
-        <section id="gallery" class="gallery">
-            <span class="section-label">moments</span>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.1" alt="tam's photo album cover" class="gallery-image">
-                    <p class="gallery-caption">my albums</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.2" alt="tam in green saree mirror selfie" class="gallery-image">
-                    <p class="gallery-caption">i luv ma wifey</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.3" alt="tam in saree with kanaa music" class="gallery-image">
-                    <p class="gallery-caption">othaiyadi pathaiyila</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.5" alt="roblox winner t4muuuuu" class="gallery-image">
-                    <p class="gallery-caption">winner is t4muuuuu</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.6" alt="tam at restaurant" class="gallery-image">
-                    <p class="gallery-caption">dinner dates</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.8" alt="butterfly brooch on beige suit" class="gallery-image">
-                    <p class="gallery-caption">butterfly moments</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.9" alt="anime couple horimiya" class="gallery-image">
-                    <p class="gallery-caption">like miyamura and hori</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.10" alt="couple mirror selfie kiss" class="gallery-image">
-                    <p class="gallery-caption">mirror kisses</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.11" alt="instagram comments tamanna aatmik chauhan" class="gallery-image">
-                    <p class="gallery-caption">tamanna aatmik chauhan</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.12" alt="couple mirror selfie damn you look good" class="gallery-image">
-                    <p class="gallery-caption">damn you look good</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.14" alt="the coffee project sign" class="gallery-image">
-                    <p class="gallery-caption">the coffee project</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.15" alt="phones taking photos of cake" class="gallery-image">
-                    <p class="gallery-caption">capturing sweetness</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.16" alt="tam with birthday cake" class="gallery-image">
-                    <p class="gallery-caption">birthday girl</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.17" alt="tam with cake eyes closed" class="gallery-image">
-                    <p class="gallery-caption">making wishes</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.18" alt="tam black dress mirror selfie" class="gallery-image">
-                    <p class="gallery-caption">black dress kind of night</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.19" alt="tam bathroom mirror selfie peace sign" class="gallery-image">
-                    <p class="gallery-caption">peace and love</p>
-                </div>
-                <div class="gallery-item">
-                    <img src="Vw0GieYNCo6A2R.20" alt="tam car selfie peace sign" class="gallery-image">
-                    <p class="gallery-caption">car rides</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- closing section -->
-        <section class="closing">
-            <p class="closing-message">
-                to the girl who brightens every room she enters, 
-                who makes every moment feel like a scene from a movie, 
-                and who somehow manages to be both the winter wine 
-                and the morning light.
-            </p>
-            <a href="#gallery" class="closing-cta">
-                see it all again
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
-        </section>
-    </main>
+    <svg class="flower flower-right f1" viewBox="0 0 200 300" fill="none">
+        <path d="M100 300 Q100 200 120 150 Q140 100 100 80 Q60 100 80 150 Q100 200 100 300" stroke="#C4B5C4" stroke-width="3" fill="none"/>
+        <ellipse cx="100" cy="60" rx="28" ry="45" fill="#B8C5B8" opacity="0.7" transform="rotate(-15 100 60)"/>
+        <ellipse cx="100" cy="60" rx="28" ry="45" fill="#B8C5B8" opacity="0.7" transform="rotate(15 100 60)"/>
+        <circle cx="100" cy="60" r="15" fill="#6B4A32" opacity="0.3"/>
+    </svg>
     
-    <script>
-        // scroll triggered animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        // observe all animated elements
-        document.querySelectorAll('.section-label, .story-text, .poem, .gallery-item, .closing-message, .closing-cta').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // flower scroll animation
-        const flowers = document.querySelectorAll('.crayon-flower');
-        const flowerObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        flowers.forEach(flower => flowerObserver.observe(flower));
-        
-        // smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-        
-        // console greeting
-        console.log('welcome to tam\'s page');
-        console.log('built with love');
-    </script>
+    <svg class="flower flower-left f2" viewBox="0 0 200 300" fill="none">
+        <path d="M100 300 Q100 220 90 180 Q80 140 100 120 Q120 140 110 180 Q100 220 100 300" stroke="#C4B5C4" stroke-width="3" fill="none"/>
+        <circle cx="100" cy="100" r="35" fill="#B8C5B8" opacity="0.6"/>
+        <circle cx="100" cy="100" r="20" fill="#6B4A32" opacity="0.2"/>
+    </svg>
     
-    <!-- structured data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "tam",
-        "description": "a private digital gift page for tamanna",
-        "url": "https://yourdomain.com/tam"
-    }
-    </script>
+    <svg class="flower flower-right f2" viewBox="0 0 200 300" fill="none">
+        <path d="M100 300 Q100 220 110 180 Q120 140 100 120 Q80 140 90 180 Q100 220 100 300" stroke="#B8C5B8" stroke-width="3" fill="none"/>
+        <circle cx="100" cy="100" r="40" fill="#C4B5C4" opacity="0.5"/>
+        <circle cx="100" cy="100" r="25" fill="#B8C5B8" opacity="0.6"/>
+        <circle cx="100" cy="100" r="10" fill="#6B4A32" opacity="0.3"/>
+    </svg>
+    
+    <svg class="flower flower-left f3" viewBox="0 0 200 300" fill="none">
+        <path d="M100 300 Q90 250 85 200 Q80 150 100 130 Q120 150 115 200 Q110 250 100 300" stroke="#B8C5B8" stroke-width="3" fill="none"/>
+        <ellipse cx="100" cy="110" rx="30" ry="50" fill="#C4B5C4" opacity="0.7" transform="rotate(-30 100 110)"/>
+        <ellipse cx="100" cy="110" rx="30" ry="50" fill="#C4B5C4" opacity="0.7" transform="rotate(30 100 110)"/>
+        <circle cx="100" cy="110" r="18" fill="#6B4A32" opacity="0.3"/>
+    </svg>
+    
+    <svg class="flower flower-right f3" viewBox="0 0 200 300" fill="none">
+        <path d="M100 300 Q110 250 115 200 Q120 150 100 130 Q80 150 85 200 Q90 250 100 300" stroke="#C4B5C4" stroke-width="3" fill="none"/>
+        <ellipse cx="100" cy="110" rx="35" ry="55" fill="#B8C5B8" opacity="0.6" transform="rotate(-20 100 110)"/>
+        <ellipse cx="100" cy="110" rx="35" ry="55" fill="#B8C5B8" opacity="0.6" transform="rotate(20 100 110)"/>
+        <circle cx="100" cy="110" r="20" fill="#6B4A32" opacity="0.2"/>
+    </svg>
+
+    <section class="hero">
+        <h1>tam</h1>
+        <p class="subtitle">as fine as the winter wine, with her glasses perched, her gaze divine</p>
+        <a href="#story" class="btn">enter</a>
+    </section>
+    
+    <section id="story" class="story">
+        <p class="label">how this was made</p>
+        <p class="story-text">
+            this is a small corner of the internet dedicated to tamanna aatmik chauhan. 
+            the girl who wins at roblox, takes the prettiest mirror selfies, and somehow 
+            looks perfect in every saree she wears.
+        </p>
+        <div class="poem">
+            as fine as the winter wine,<br>
+            w her glasses perched,<br>
+            her gaze divine<br><br>
+            as bright as the morning,<br>
+            dark as a daze,<br>
+            eyes like bonfire,<br>
+            lost in a haze.
+        </div>
+    </section>
+    
+    <section>
+        <p class="label">moments</p>
+        <div class="gallery">
+            <!-- CHANGE THESE FILENAMES TO MATCH YOUR ACTUAL VIDEO NAMES -->
+            <div class="video-box">
+                <video controls muted loop playsinline>
+                    <source src="1.mp4" type="video/mp4">
+                </video>
+                <p class="caption">moment 1</p>
+            </div>
+            <div class="video-box">
+                <video controls muted loop playsinline>
+                    <source src="2.mp4" type="video/mp4">
+                </video>
+                <p class="caption">moment 2</p>
+            </div>
+            <div class="video-box">
+                <video controls muted loop playsinline>
+                    <source src="3.mp4" type="video/mp4">
+                </video>
+                <p class="caption">moment 3</p>
+            </div>
+            <div class="video-box">
+                <video controls muted loop playsinline>
+                    <source src="4.mp4" type="video/mp4">
+                </video>
+                <p class="caption">moment 4</p>
+            </div>
+            <div class="video-box">
+                <video controls muted loop playsinline>
+                    <source src="5.mp4" type="video/mp4">
+                </video>
+                <p class="caption">moment 5</p>
+            </div>
+            <div class="video-box">
+                <video controls muted loop playsinline>
+                    <source src="6.mp4" type="video/mp4">
+                </video>
+                <p class="caption">moment 6</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="closing">
+        <p class="closing-text">
+            to the girl who brightens every room she enters, 
+            who makes every moment feel like a scene from a movie.
+        </p>
+        <a href="#" class="btn">back to top</a>
+    </section>
 </body>
 </html>
